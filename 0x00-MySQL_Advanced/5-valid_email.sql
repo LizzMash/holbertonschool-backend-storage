@@ -1,9 +1,10 @@
--- Creates a trigger that resets the attribute valid_email only when the email has been changed.
-
-DELIMITER $ $ CREATE TRIGGER `is_valid` BEFORE
-UPDATE
-  ON `users` FOR EACH ROW BEGIN IF NEW.email <> OLD.email THEN
-SET
-  NEW.valid_email = 0;
-END IF;
-END $ $ DELIMITER;
+-- Create a trigger for the items table in the holberton database
+-- Decrease the quantity of an item when a new order is inserted
+DELIMITER $$
+CREATE TRIGGER update_email BEFORE UPDATE
+ON users FOR EACH ROW
+BEGIN
+    IF NEW.email <> OLD.email THEN
+    SET NEW.valid_email = 0;
+    END IF;
+END; $$
